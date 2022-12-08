@@ -1,13 +1,21 @@
 #include<stdio.h>
 #include"LinkedList.h"
+struct Node* MiddleElement(struct Node **START){
+    struct Node *T,*R;
+    T=*START;
+    R=(*START)->Next;
+    while(R!=NULL && R->Next!=NULL){
+        T=T->Next;
+        R=R->Next;
+        R=R->Next;
+    }
+    return T;
+}
 void Split(struct Node **START){
     struct Node *START2,*p;
     p=(*START);
     START2=NULL;
-    int n = CountNode(START)/2;
-    for(int i=0;i<n-1;i++){
-        p=p->Next;
-    }
+    p=MiddleElement(START);
     START2 = p->Next;
     p->Next = NULL;
     Traverse(START);
