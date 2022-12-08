@@ -2,16 +2,21 @@
 #include"LinkedList.h"
 struct Node* binarySearch(struct Node **START,int key){
     struct Node *mid;
-    while((*START)->Next!=NULL){
-        mid=middleElement(START);
-        if(mid->info==key) return mid;
+    if(START!=NULL){
+        mid = middleElement(START);
+        if(mid->info == key){
+            return mid;
+        }
+        else if(mid->info > key){
+            mid->Next = NULL;
+            binarySearch(START,key);
+        }
         else{
-            if(key<mid->info) mid->Next=NULL;
-            else (*START) = mid->Next;
+            (*START)= mid->Next;
+            binarySearch(START,key);
         }
     }
-    if((*START)->info==key) return START;
-    else return NULL;
+    return NULL;
 }
 int main(){
     struct Node *START,*p;
@@ -22,7 +27,8 @@ int main(){
     InsEnd(&START,4);
     InsEnd(&START,5);
     Traverse(&START);
-    p=binarySearch(&START,8);
+    p=binarySearch(&START,4);
     if(p!=NULL) printf("\nElement is present");
     else printf("\nElement is not present");
 }
+

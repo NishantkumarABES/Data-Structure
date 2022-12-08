@@ -1,7 +1,7 @@
 #include<stdio.h>
+#include"LinkedList.h"
+#include<stdio.h>
 #include<stdlib.h>
-#define TRUE 1
-#define FALSE 0
 struct Node{
     int info;
     struct Node *Next;
@@ -19,7 +19,16 @@ void Traverse(struct Node **START){
         p=p->Next;
     }
 }
-
+int CountNode(struct Node **START){
+    int c=0;
+    struct Node *q;
+    q=(*START);
+    while(q!=NULL){
+        c++;
+        q=q->Next;
+    }
+    return c;
+}
 void InsBeg(struct Node **START,int x){
     struct Node *p;
     p=GetNode();
@@ -115,8 +124,10 @@ int DelAft(struct Node **p){
     free(p);
     return x;
 }
-
-void middleElement(struct Node **START){
+int PQdel(struct Node **START){
+    int x = DelBeg(START);
+}
+struct Node* middleElement(struct Node **START){
     struct Node *T,*R;
     T=*START;
     R=(*START)->Next;
@@ -125,73 +136,41 @@ void middleElement(struct Node **START){
         R=R->Next;
         R=R->Next;
     }
-    printf("%d",T->info);
+    return T;
 }
 
-/*
-int countLengthOfCycle(struct Node **START);
-    struct Node *T,*R;
-        T=*START;
-        R=*START;
-        while(R!=NULL && R->Next!=NULL){
-            T=T->Next;
-            R=R->Next;
-            R=R->Next;
-            if(T==R){
-                break;
-            }
+
+void Delete_KthNode(struct Node **START,int k){
+    struct Node *p,*q;
+    int i=1;
+    p=(*START);
+    while(i<=k){
+        i++;
+        if(p!=NULL){
+            p=p->Next;
         }
-        int c=0;
-        do{
-            c++;
-            T=T->Next;
-        }while(T!=R);
-        return c;
-struct Node* StartPoint(Struct Node **START);
-    struct Node *T,*R,*P;
-        T=*START;
-        R=*START;
-        P=*START;
-        while(R!=NULL && R->Next!=NULL){
-            T=T->Next;
-            R=R->Next;
-            R=R->Next;
-            if(T==R){
-                break;
-            }
-        }
-        while(1){
-            if(P==R){
-                return P;
-            }
-            P=P->Next;
-            R=R->Next;
-        }
-}
-int PQdel(struct Node **START){
-    int x = DelBeg(START);
-}
-void CountEvenOdd(struct Node **START){
-    int c1=0,c2=0;
-    struct Node *q;
-    q=*START;
-    while(q!=NULL){
-        if((q->info)%2==0){
-            c1++;
-        }
-        else c2++;
-        q=q->Next;
     }
-    printf("Even= %d,Odd= %d",c1,c2);
-}*/
+    q=(*START);
+    if(p!=NULL){
+        while(p->Next!=NULL){
+            q=q->Next;
+            p=p->Next;
+        }
+        DelAft(&q);
+    }
+    else DelBeg(START);
+}
 int main(){
     struct Node *START;
     START=NULL;
-    InsEnd(&START,5);
-    OrderedInsertion(&START,10);
-    OrderedInsertion(&START,15);
-    OrderedInsertion(&START,20);
-    OrderedInsertion(&START,25);
-    Cycledetection(&START);
+    InsEnd(&START,10);
+    InsEnd(&START,20);
+    InsEnd(&START,30);
+    InsEnd(&START,40);
+    InsEnd(&START,50);
+    InsEnd(&START,60);
+    Traverse(&START);
+    printf("\n");
+    Delete_KthNode(&START,3);
     Traverse(&START);
 }
