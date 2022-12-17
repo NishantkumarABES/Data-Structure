@@ -22,6 +22,9 @@ int Dequeue(struct Node **FRONT,struct Node **REAR){
     }
     return x;
 }
+int IsEmpty(){
+
+}
 int main(){
     struct Node *FRONT,*REAR;
     FRONT = NULL;
