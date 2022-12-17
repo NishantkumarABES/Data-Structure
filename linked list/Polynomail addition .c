@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"ploynomialLinkedList.h"
+#include"Header files/ploynomialLinkedList.h"
 void PolynomailAddition(struct Node **poly1,struct Node **poly2){
     struct Node *poly3,*p,*q;
     p = *poly1;

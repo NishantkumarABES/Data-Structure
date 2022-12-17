@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include"LinkedList.h"
-#include"mystackPointer.h"
+#include"Header files/LinkedList.h"
+#include"Header files/mystackPointer.h"
 void ReverseInplace(struct Node **START){
     struct Node *C,*P,*N;
     C = *START;

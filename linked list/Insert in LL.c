@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"LinkedList.h"
+#include"Header files/LinkedList.h"
 void insert(struct Node **START,int x,int n){
     int a = CountNode(START);
     if(n==1) InsBeg(START,x);

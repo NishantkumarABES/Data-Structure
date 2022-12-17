@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"LinkedList.h"
+#include"Header files/LinkedList.h"
 void duplicateElement(struct Node **START){
     struct Node *p,*q,*r;
     p=(*START);

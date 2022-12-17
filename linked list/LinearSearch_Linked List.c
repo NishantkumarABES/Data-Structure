@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"LinkedList.h"
+#include"Header files/LinkedList.h"
 void LinearSearch(struct Node **START,int key){
     struct Node *p;
     p=*START;
