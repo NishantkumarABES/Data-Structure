@@ -72,7 +72,7 @@ void Insert(struct Node **START,int x,int n){
     }
     else printf("Invalid Index");
 }
-void OrderedInsertion(struct Node **START,int x){
+void orderedInsertion(struct Node **START,int x){
     struct Node *p,*q;
     p=*START;
     q=NULL;
@@ -86,7 +86,7 @@ void OrderedInsertion(struct Node **START,int x){
     else InsAft(&q,x);
 }
 void PQInsertion(struct Node **START,int x){
-    OrderedInsertion(START,x);
+    orderedInsertion(START,x);
 }
 
 int DelBeg(struct Node **START){

@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"myStackPointer.h"
+#include"header files/myStackPointer.h"
 int main(){
     int n,y;
     struct stack fs;

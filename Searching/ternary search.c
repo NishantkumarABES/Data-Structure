@@ -1,9 +1,10 @@
 #include<stdio.h>
+#include<stdlib.h>
 int ternarySearch(int *arr,int n,int k){
     int high = n-1,low=0;
     while(low<high){
-        int mid1 =  low + (high/3);
-        int mid2 =  high - (high/3);
+        int mid1 =  low + ((high-low)/3);
+        int mid2 =  high - ((high-low)/3);
         if(k==arr[mid1]){
             return mid1;
         }

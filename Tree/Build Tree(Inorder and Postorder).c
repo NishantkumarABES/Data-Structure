@@ -50,9 +50,18 @@ void postorderTraversal(struct Node *T){
         printf("%d ",T->data);
     }
 }
+int Max(int a,int b){
+    if(a>b) return a;
+    else return b;
+}
+int Height(struct Node *T){
+    if(T==NULL) return 0;
+    else if(T->left==NULL && T->right==NULL) return 0;
+    else return Max(Height(T->left),Height(T->right))+1;
+}
 int main(){
-    int Inorder[10]={5,2,6,9,10,1,3,7,8,4};
-    int Postorder[10]={5,10,9,6,2,4,8,7,3,1};
+    int Inorder[10]={8,6,9,4,7,2,5,1,3};
+    int Postorder[10]={8,9,6,7,4,5,2,3,1};
     int n=sizeof(Postorder)/sizeof(int);
     int m=n-1;
     struct Node* root = BuildTree(Inorder,Postorder,0,n-1,&m);
@@ -62,4 +71,5 @@ int main(){
     PreorderTraversal(root);
     printf("\nInOrder Traversal: ");
     inorderTraversal(root);
+    printf("\n%d",Height(root));
 }

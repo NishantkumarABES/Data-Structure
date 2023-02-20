@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-#include"mystack.h"
+#include"header files/mystack.h"
 int main(){
     char s[20];
     printf("Enter the Expression: ");

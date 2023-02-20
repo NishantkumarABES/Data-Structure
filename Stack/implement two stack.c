@@ -1,82 +1,62 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
 #define TRUE 1
 #define FALSE 0
 struct twoStack{
+    int *arr;
     int size;
-    int *item;
-    int top1,top2;
+    int *TOP;
 };
-struct twoStack s;
-void initialise(int n){
-    s.size=n;
-    s.item  = calloc(n,sizeof(int));
-    s.top1=-1;
-    s.top2=n;
-}
-int isempty1(){
-    if (s.top1==-1){
-        return TRUE;
-    }
-    else{
-        return FALSE;
+void intailise(struct twoStack *ms,int n){
+    ms->arr=calloc(n,sizeof(int));
+    ms->size=n/2;
+    ms->TOP=calloc(ms->size,sizeof(int));
+    int j=-1;
+    for(int i=0;i<ms->size;i++){
+        ms->TOP[i]=j;
+        j=j+(ms->size);
     }
 }
-int isempty2(){
-    if (s.top2==s.size){
-        return TRUE;
-    }
-    else{
-        return FALSE;
-    }
+int isEmpty(struct twoStack *ms,int n){
+    int s=ms->size;
+    int a=-1+(n-1)*s;
+    if(ms->TOP[n-1]==a) return TRUE;
+    else return FALSE;
 }
-void push1(int x){
-    if(s.top1>s.top2){
-        printf("stack overflow");
+void push(struct twoStack *ms,int n,int val){
+    int s=ms->size;
+    int a=((n)*s)-1;
+    if(ms->TOP[n-1]==a){
+        printf("Stack:%d Overflow",n);
         exit(1);
     }
-    s.top1=s.top1+1;
-    s.item[s.top1]=x;
+    ms->TOP[n-1]++;
+    ms->arr[ms->TOP[n-1]]=val;
 }
-void push2(int x){
-    if(s.top2<s.top1){
-        printf("stack overflow");
+int pop(struct twoStack *ms,int n){
+    if(isEmpty(ms,n)){
+        printf("Stack:%d Underflow",n);
         exit(1);
     }
-    s.top2=s.top2-1;
-    s.item[s.top2]=x;
-}
-int pop1(){
-    if (isempty1()){
-        printf("stack underflow");
-        exit(1);
-    }
-    int x=s.item[s.top1];
-    s.top1=s.top1-1;
+    int x=ms->arr[ms->TOP[n-1]];
+    ms->TOP[n-1]--;
     return x;
 }
-int pop2(){
-    if (isempty2()){
-        printf("stack underflow");
-        exit(1);
-    }
-    int x=s.item[s.top2];
-    s.top2=s.top2+1;
-    return x;
-}
-int stacktop1(){
-    int x=s.item[s.top1];
-    return x;
-}
-int stacktop2(){
-    int x=s.item[s.top2];
-    return x;
+int stackTop(struct twoStack *ms,int n){
+    int a=ms->TOP[n-1];
+    return ms->arr[a];
 }
 int main(){
-    initialise(10);
-    push1(50);
-    push1(100);
-    printf("%d ",isempty2());
-    printf("%d ",pop1());
-    printf("%d ",pop2());
+    struct twoStack ms;
+    intailise(&ms,16);
+    push(&ms,1,10);
+    push(&ms,1,20);
+    push(&ms,1,20);
+    push(&ms,2,40);
+    push(&ms,2,50);
+    push(&ms,2,60);
+    pop(&ms,1);
+    pop(&ms,2);
+    printf("%d\n",stackTop(&ms,1));
+    printf("%d\n",stackTop(&ms,2));
 }

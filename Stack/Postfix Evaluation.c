@@ -1,8 +1,6 @@
 #include<stdio.h>
-#define STACKSIZE 10
-#define TRUE 1
-#define FALSE 0
-#include"mystack.h"
+#include<string.h>
+#include"header files/myStack.h"
 int Evaluate(int a,int b,char op){
     switch(op){
         case '+': return a+b;
@@ -11,12 +9,12 @@ int Evaluate(int a,int b,char op){
         case '/': return a/b;
     }
 }
-int main(){
-    char PS[20],symb;
-    int val,a,b,x,i=0;
-    gets(PS);
-    while(PS[i]!='\0'){
-        symb=PS[i];
+int PostfixEvalution(char *exp){
+    initialise();
+    char symb;
+    int a,b,val,i=0;
+    while(exp[i]!='\0'){
+        symb=exp[i];
         if(symb>='0'&&symb<='9'){
             push(symb-48);
         }
@@ -28,7 +26,14 @@ int main(){
         }
         i++;
     }
-    x=pop();
-    printf("%d",x);
+    int x=pop();
+    return x;
+}
+int main(){
+    char exp[20];
+    printf("Enter the Expression(postFix): ");
+    gets(exp);
+    int x=PostfixEvalution(exp);
+    printf("Result: %d",x);
     return 0;
 }

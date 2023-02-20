@@ -25,6 +25,7 @@ int main(){
     InsEnd(&CSTART,20);
     InsEnd(&CSTART,25);
     int x=Cycledetection(&CSTART);
+    printf("%d\n",x);
     Traverse(&CSTART);
 }
 

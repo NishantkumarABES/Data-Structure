@@ -29,9 +29,9 @@ int main(){
     InsEnd(&START,1);
     InsEnd(&START,2);
     InsEnd(&START,3);
-    InsEnd(&START,3);
+    InsEnd(&START,2);
     InsEnd(&START,1);
     int x=isPalindrome(&START);
-    if(x==1) printf("YES");
-    else printf("NO");
+    if(x==1) printf("YES,It is a palindrome");
+    else printf("NO,It is not a palindrome");
 }

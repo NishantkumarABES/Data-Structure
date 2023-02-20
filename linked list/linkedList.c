@@ -4,17 +4,10 @@
 int main(){
     struct Node *START,*p;
     START = NULL;
-    InsEnd(&START,1);
-    InsEnd(&START,11);
-    InsEnd(&START,11);
-    InsEnd(&START,11);
-    InsEnd(&START,1);
-    p=START;
-    for(int i=0;i<3;i++){
-        p=p->Next;
-    }
-    Traverse(&START);
-    printf("\n");
-    int x=DelAft(&p);
+    InsEnd(&START,10);
+    InsEnd(&START,20);
+    InsEnd(&START,30);
+    InsEnd(&START,40);
+    InsEnd(&START,50);
     Traverse(&START);
 }

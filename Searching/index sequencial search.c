@@ -1,11 +1,12 @@
 #include<stdio.h>
-int indexSearch(int *arr,int n,int k){
-    int *index,a=n/4;
-    index = malloc((n/2)*sizeof(int));
+#include<stdlib.h>
+int indexSearch(int *arr,int n,int k,int GS){
+    int *index,a=n/GS;
+    index = malloc((n/(GS-1))*sizeof(int));
     for(int i=0;i<=a;i++){
-        index[i] = i*4;
+        index[i] = i*GS;
     }
-    if((n-1)%4!=0){
+    if((n-1)%GS!=0){
         a++;
         index[a] = n-1;
     }
@@ -31,7 +32,7 @@ int indexSearch(int *arr,int n,int k){
     }
 }
 int main(){
-    int *arr,n,k;
+    int *arr,n,k,GS;
     printf("Enter the size of array: ");
     scanf("%d",&n);
     arr=malloc(n*sizeof(int));
@@ -41,7 +42,9 @@ int main(){
     }
     printf("Enter the key: ");
     scanf("%d",&k);
-    int result = indexSearch(arr,n,k);
+    printf("Enter the group size: ");
+    scanf("%d",&GS);
+    int result = indexSearch(arr,n,k,GS);
     printf("Index - %d",result);
     return 0;
 }

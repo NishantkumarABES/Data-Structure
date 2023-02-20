@@ -8,7 +8,7 @@ struct Queue{
     int Front;
     int Rear;
 };
-struct Queue cq;
+
 void initialise(struct Queue *cq){
     cq->Front=QUEUESIZE-1;
     cq->Rear=QUEUESIZE-1;

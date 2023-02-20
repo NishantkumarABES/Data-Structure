@@ -1,57 +1,49 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
 #define TRUE 1
 #define FALSE 0
-
-struct stack{
-    int *item;
+struct multi_Stack{
+    int *arr;
+    int size;
     int *TOP;
 };
-struct stack s;
-void initialise(int n,int m,int i){
-    static int j=0;
-    if(i<m-1) s.TOP[j] = ((n/m)*i)-1;
-    else s.TOP[m-1]=10;
-    j++;
-}
-
-int isempty(int i){
-    if (s.TOP[i]==-1){
-        return TRUE;
-    }
-    else{
-        return FALSE;
+void intailise(struct multi_Stack *ms,int n,int m){
+    ms->arr=calloc(n,sizeof(int));
+    ms->size=n/m;
+    ms->TOP=calloc(ms->size,sizeof(int));
+    int j=-1;
+    for(int i=0;i<ms->size;i++){
+        ms->TOP[i]=j;
+        j=j+(ms->size);
     }
 }
-
-void push(char x){
-    if(s.TOP==STACKSIZE-1){
-        printf("stack overflow");
+int isEmpty(struct multi_Stack *ms,int n){
+    int s=ms->size;
+    int a=-1+(n-1)*s;
+    if(ms->TOP[n-1]==a) return TRUE;
+    else return FALSE;
+}
+void push(struct multi_Stack *ms,int n,int val){
+    int s=ms->size;
+    int a=((n)*s)-1;
+    if(ms->TOP[n-1]==a){
+        printf("Stack:%d Overflow",n);
         exit(1);
     }
-    s.TOP=s.TOP+1;
-    s.item[s.TOP]=x;
+    ms->TOP[n-1]++;
+    ms->arr[ms->TOP[n-1]]=val;
 }
-
-char pop(){
-    if (isempty(s)){
-        printf("stack underflow");
+int pop(struct multi_Stack *ms,int n){
+    if(isEmpty(ms,n)){
+        printf("Stack:%d Underflow",n);
         exit(1);
     }
-    char x=s.item[s.TOP];
-    s.TOP=s.TOP-1;
-    return x;
-}
-char stacktop(){
-    char x=s.item[s.TOP];
+    int x=ms->arr[ms->TOP[n-1]];
+    ms->TOP[n-1]--;
     return x;
 }
 int main(){
-    int m,n;
-    printf("Enter the size of stack: ");
-    scanf("%d",&n)
-    s.item = calloc(n,sizeof(int));
-    printf("Enter the number of stack: ");
-    scanf("%d",&m)
-    s.TOP = calloc(m,sizeof(int));
+    struct multi_Stack ms;
+    int m;
+    intailise(&ms,16,4);
 }

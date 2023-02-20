@@ -53,8 +53,8 @@ void postorderTraversal(struct Node *T){
 }
 
 int main(){
-    int Inorder[10]={5,2,6,9,10,1,3,7,8,4};
-    int Preorder[10]={1,2,5,6,9,10,3,7,8,4};
+    int Inorder[10]={10,15,20,23,25,30,35,39,42};
+    int Preorder[10]={30,20,10,15,25,23,39,35,42};
     struct Node* root = BuildTree(Inorder,Preorder,0,9);
     printf("PostOrder Traversal: ");
     postorderTraversal(root);

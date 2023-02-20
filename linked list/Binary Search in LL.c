@@ -22,7 +22,7 @@ int main(){
     InsEnd(&START,4);
     InsEnd(&START,5);
     Traverse(&START);
-    p=binarySearch(&START,8);
+    p=binarySearch(&START,3);
     if(p!=NULL) printf("\nElement is present");
     else printf("\nElement is not present");
 }

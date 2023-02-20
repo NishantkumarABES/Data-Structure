@@ -1,29 +1,28 @@
 #include<stdio.h>
 #include<stdlib.h>
-int jumpSearch(int *arr,int n,int step,int key){
+#include<math.h>
+int jumpSearch(int *arr,int n,int key){
     int j=0;
-    for(int i=0;i<n;i=i+step){
+    int step = (int)floor(sqrt(n));
+    printf("step: %d\n",step);
+    for(int i=0;i<n;i=i+(step-1)){
         if(key<arr[i]){
             j=i;
             break;
         }
         else if(key==arr[i]){
-            return j;
+            return i;
         }
     }
-    int t=0;
-    for(int p=j-step;p<j;p++){
+    for(int p=j-1;p>j-step;p--){
         if(arr[p]==key){
             return p;
-            t=1;
         }
     }
-    if(t==0){
-        printf("Element is not present.");
-    }
+    return -1;
 }
 int main(){
-    int *arr,n,s,k;
+    int *arr,n,k;
     printf("Enter the size of array: ");
     scanf("%d",&n);
     arr=malloc(n*sizeof(int));
@@ -33,7 +32,5 @@ int main(){
     }
     printf("Enter the search key: ");
     scanf("%d",&k);
-    printf("Enter the steps: ");
-    scanf("%d",&s);
-    printf("index- %d",jumpSearch(arr,n,s,k));
+    printf("index- %d",jumpSearch(arr,n,k));
 }

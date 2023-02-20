@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"LinkedList.h"
+#include"header files/LinkedList.h"
 void UnionLL(struct Node **START1,struct Node **START2){
     struct Node *p,*q,*START;
     START=NULL;
@@ -39,10 +39,10 @@ int main(){
     int arr1[5] = {20,40,30,10,5};
     int arr2[6] = {35,34,12,20,30,23};
     for(int i=0;i<5;i++){
-        OrderedInsertion(&START1,arr1[i]);
+        orderedInsertion(&START1,arr1[i]);
     }
     for(int i=0;i<6;i++){
-        OrderedInsertion(&START2,arr2[i]);
+        orderedInsertion(&START2,arr2[i]);
     }
     UnionLL(&START1,&START2);
 }

@@ -1,53 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define STACKSIZE 10
 #define TRUE 1
 #define FALSE 0
-struct stack{
-    char item[STACKSIZE];
-    int TOP;
-};
-struct stack s;
-void initialise(){
-    s.TOP=-1;
-}
-
-int isempty(){
-    if (s.TOP==-1){
-        return TRUE;
-    }
-    else{
-        return FALSE;
-    }
-}
-
-void push(char x){
-    if(s.TOP==STACKSIZE-1){
-        printf("stack overflow");
-        exit(1);
-    }
-    s.TOP=s.TOP+1;
-    s.item[s.TOP]=x;
-}
-
-char pop(){
-    if (isempty(s)){
-        printf("stack underflow");
-        exit(1);
-    }
-    char x=s.item[s.TOP];
-    s.TOP=s.TOP-1;
-    return x;
-}
-char stacktop(){
-    char x=s.item[s.TOP];
-    return x;
-}
-pred(char a,char b){
-    if(a=='(' || b=='(') return FALSE;
-    else if(b==')') return TRUE;
-    else if(a=='^' || a=='*' || a=='/' || a=='%'){
+#include"header files/myStack.h"
+int prcd(char a,char b){
+   if(a=='^' || a=='*' || a=='/' || a=='%'){
         if(b=='^'){
             return FALSE;
         }
@@ -64,7 +22,7 @@ pred(char a,char b){
         }
     }
 }
-void infixtopre(char infix[]){
+void infixToprefix(char infix[]){
     int i=0,p=0;
     char prefix[20];
     char x,symbol;
@@ -78,7 +36,7 @@ void infixtopre(char infix[]){
             p++;
         }
         else{
-            while(!isempty() && !pred(symbol,stacktop())){
+            while(!isempty() && !prcd(symbol,stacktop())){
                   x=pop();
                   prefix[p]=x;
                   p++;
@@ -97,6 +55,7 @@ void infixtopre(char infix[]){
 }
 int main(){
     char infix[20];
+    printf("Enter the Expression: ");
     gets(infix);
-    infixtopre(infix);
+    infixToprefix(infix);
 }

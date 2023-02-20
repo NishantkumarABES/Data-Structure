@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"myStackPointer.h"
+#include"header files/myStackPointer.h"
 int main(){
     int n,y;
     struct stack fs;
@@ -9,6 +9,7 @@ int main(){
     printf("Enter the number of element: ");
     scanf("%d",&n);
     int i=0;
+    printf("Enter the elements: ");
     while(i<n){
         int x;
         scanf("%d",&x);

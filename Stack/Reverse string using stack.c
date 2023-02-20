@@ -3,7 +3,7 @@
 #define size 100
 #define TURE 1
 #define FALSE 0
-#include"mystack.h"
+#include"header files/mystack.h"
 int main(){
     char s[20];
     int i=0;

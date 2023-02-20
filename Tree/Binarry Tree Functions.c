@@ -105,6 +105,18 @@ int IsComplete(struct Node *root,int i,int numberNodes){
     return FALSE;
   return (IsComplete(root->left,2*i+1,numberNodes) && IsComplete(root->right,2*i+2,numberNodes));
 }
+void Mirror(struct Node **T){
+    if((*T)->left!=NULL && (*T)->right!=NULL){
+        Mirror(&((*T)->left));
+        Mirror(&((*T)->right));
+        struct Node *t=(*T)->left;
+        (*T)->left=(*T)->right;
+        (*T)->right=t;
+    }
+    else{
+        return;
+    }
+}
 int main(){
     struct Node *root=NULL;
     int x;
@@ -112,26 +124,9 @@ int main(){
     scanf("%d",&x);
     root=MakeNode(x);
     CreateTree(&root);
-    PreorderTraversal(root);
-    printf("\n");
     inorderTraversal(root);
     printf("\n");
-    postorderTraversal(root);
-    printf("\n");
-    printf("Number of Nodes: %d\n",CountNode(root));
-    printf("\n");
-    printf("Number of Leaf Nodes: %d\n",CountLeaf(root));
-    printf("\n");
-    printf("Number of  N2 Nodes: %d\n",CountN2(root));
-    printf("\n");
-    printf("Number of  N1 Nodes: %d\n",CountN1(root));
-    printf("\n");
-    printf("height: %d\n ",Height(root));
-    printf("\n");
-    printf("Sum of all nodes: %d\n",sumOfNodes(root));
-    if(StrictlyBT(root)==1) printf("It is strictly Binary tree.\n");
-    else printf("It is not strictly Binary tree.\n");
-    if(IsComplete(root,0,CountN1(root))==1) printf("It is complete Binary tree.\n");
-    else printf("It is not complete Binary tree.\n");
+    Mirror(&root);
+    inorderTraversal(root);
     return 0;
 }

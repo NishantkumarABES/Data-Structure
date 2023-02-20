@@ -1,22 +1,29 @@
 #include<stdio.h>
-#include"Queue.h"
-void push(struct Queue *q,int x){
-    struct Queue q2;
-    initialise(&q2);
+#include"header files/Queue.h"
+struct Queue q1,q2;
+void push(int x){
     enqueue(&q2,x);
-    while(!isEmpty(q)){
-        enqueue(&q2,dequeue(q));
+    while(!isEmpty(&q1)){
+        enqueue(&q2,dequeue(&q1));
     }
     while(!isEmpty(&q2)){
-        enqueue(q,dequeue(q));
+        enqueue(&q1,dequeue(&q2));
     }
 }
-int pop(struct Queue *q){
-    return dequeue(q);
+int pop(){
+    if(isEmpty(&q1)){
+        printf("Invalid");
+        exit(1);
+    }
+    return dequeue(&q1);
 }
 int main(){
-    struct Queue q1;
     initialise(&q1);
-    push(&q1,10);
-
+    initialise(&q2);
+    push(10);
+    push(20);
+    push(30);
+    printf("%d\n",pop());
+    printf("%d\n",pop());
+    return 0;
 }

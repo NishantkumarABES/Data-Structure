@@ -2,7 +2,7 @@
 #define STACKSIZE 10
 #define TRUE 1
 #define FALSE 0
-#include"mystack.h"
+#include"header files/myStack.h"
 int Evaluate(int a,int b,char op){
     switch(op){
         case '+': return a+b;
@@ -13,6 +13,7 @@ int Evaluate(int a,int b,char op){
 }
 int main(){
     char PS[20],symb;
+    printf("Enter the expression(prefix): ");
     int val,a,b,x,i=0;
     gets(PS);
     strrev(PS);
@@ -30,6 +31,6 @@ int main(){
         i++;
     }
     x=pop();
-    printf("%d",x);
+    printf("result: %d",x);
     return 0;
 }
